@@ -22,6 +22,62 @@ package "nginx"
 cookbook_file "nginx-default" do
   path "/etc/nginx/sites-available/default"
 end
+
+# Add repository so apt-get can install latest Node from NodeSource
+execute "add_nodesource_repo" do
+  command "curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -"
+end
+ 
+# Install node.js
+package "nodejs"
+ 
+# Install sqlite
+package "sqlite"
+ 
+# Install package dependencies and run npm install
+execute "npm_install" do
+  cwd "/home/ubuntu/project/web-app"
+  command "sudo npm install -g node-pre-gyp && npm install --no-bin-links"
+end
+
+# Add repository so apt-get can install latest Node from NodeSource
+execute "add_nodesource_repo" do
+  command "curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -"
+end
+ 
+# Install node.js
+package "nodejs"
+ 
+# Install sqlite
+package "sqlite"
+ 
+# Install package dependencies and run npm install
+execute "npm_install" do
+  cwd "/home/ubuntu/project/web-app"
+  command "sudo npm install -g node-pre-gyp && npm install --no-bin-links"
+end
+
+# Populate the DB
+execute "populate_db" do
+  cwd "/home/ubuntu/project/web-app"
+  command "node populateDb.js"
+end
+
+# Add a service file for running the music app on startup
+cookbook_file "musicapp.service" do
+    path "/etc/systemd/system/musicapp.service"
+end
+ 
+# Start the music app
+execute "start_musicapp" do
+    command "sudo systemctl start musicapp"
+end
+ 
+# Start music app on VM startup
+execute "startup_musicapp" do
+    command "sudo systemctl enable musicapp"
+end
+
 # Reload nginx to pick up new nginx config
 service "nginx" do
   action :reload
