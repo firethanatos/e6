@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Exercise 2</title>
+    <meta name="viewport" content="width=device-width initial-scale = 1.0">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/style">
+
+    <script type="text/javascript" src="music-data.js"></script>
+    <script src="music-app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <ul class="nav nav-tabs">
+            <li id="libbutton">
+            <div class="glyphicon glyphicon-music"></div>
+            <div><a href="/library">Library</a></div>
+            </li>
+            <li id="plistbutton" color="purple">
+            <div class = "glyphicon glyphicon-th-list" id="plistbutton"></div>
+            <div><a href="/playlists">Playlists</a></div>
+            </li>
+            <li id="srchbutton">
+            <div class = "glyphicon glyphicon-search"></div>
+            <div><a href="/search">Search</a></div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id = "pad"></div>
+    <div id="mainWindow">
+      <section class="Library" id="lib">
+        <div id="sortHeader">
+          <span id="sortByArtist" class="col-lg-1">Sort By Artist</span>
+          <span id="sortByGroup" class="col-lg-1">Sort By Group</span>
+          <div><h3 id="plistname"> </h3></div>
+        </div>
+        <div id="songList">
+        
+        </div>
+      </section>
+    </div>
+    <div id="sections">
+    <section class="Playlists" id="plists">
+      <div id = "playbutton" class ="col-lg-6">
+        <span class="glyphicon glyphicon-plus"></span><span>Playlists</span>
+      </div>
+      <div id="lplaylists")">
+          
+      </div>
+    </section>
+    
+    <section class="Search" id="srch">
+        
+    </section>
+  </div>
+  <!-- Modal HTML, CSS and Javascript Based on http://www.w3schools.com/howto/howto_css_modals.asp -->
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    
+  </div>
+
+</div>
+  <script type="text/javascript" src = '/music-app'></script>
+  <script> songsByTitle('/api/songs');</script>
+  </body>
+</html>
