@@ -27,10 +27,10 @@ end
 execute "add_nodesource_repo" do
   command "curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -"
 end
- 
+
 # Install node.js
 package "nodejs"
- 
+
 # Install sqlite
 package "sqlite"
  
@@ -38,6 +38,15 @@ package "sqlite"
 execute "npm_install" do
   cwd "/home/ubuntu/project/web-app"
   command "sudo npm install -g node-pre-gyp && npm install --no-bin-links"
+end
+
+
+
+#Install SQLITE
+# Install package dependencies and run npm install
+execute "npm_install" do
+  cwd "/home/ubuntu/project/web-app"
+  command "sudo npm install --save sqlite3"
 end
 
 # Add repository so apt-get can install latest Node from NodeSource
